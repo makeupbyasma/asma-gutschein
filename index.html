@@ -8,7 +8,13 @@
 <style>
 body{
 font-family:Arial,sans-serif;
-background:#f8f0f2;
+background:
+linear-gradient(
+135deg,
+#fff7fa,
+#ffeaf3,
+#fff7fa
+);
 margin:0;
 padding:0;
 }
@@ -78,29 +84,111 @@ font-size:14px;
 
 <p>Geschenkgutschein online bestellen</p>
 
-<input type="text" placeholder="Name des Empfängers">
+<p
+style="
+color:#666;
+line-height:1.6;
+"
+>
 
-<select>
-<option>15 €</option>
+Verschenke Schönheit,
+Make-up,
+Hairstyling oder eine
+Proteinbehandlung.
+
+Der Gutschein wird
+persönlich erstellt
+und mit individueller
+Gutscheinnummer ausgegeben.
+
+</p>
+
+<h3>Deine Daten</h3>
+
+<input
+type="text"
+placeholder="Dein Name"
+id="customerName"
+>
+
+<input
+type="text"
+placeholder="Name des Empfängers"
+id="receiverName"
+>
+
+<select id="amount">
 <option>25 €</option>
 <option>50 €</option>
 <option>75 €</option>
 <option>100 €</option>
 <option>150 €</option>
+<option>200 €</option>
 </select>
 
-<select>
+<select id="service">
 <option>Make-up</option>
 <option>Hairstyling / Frisuren</option>
 <option>Proteinbehandlung / Haarglättung</option>
 <option>Freie Wahl</option>
 </select>
 
-<input type="email" placeholder="E-Mail Adresse">
+<div
+style="
+background:#fff3f7;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+margin-bottom:15px;
+text-align:left;
+"
+>
 
-<a href="mailto:ahidar.asma@gmx.de?subject=Gutschein Bestellung">
-<button>Jetzt Gutschein kaufen</button>
-</a>
+<b>Gutschein Informationen</b>
+
+<ul>
+
+<li>✔ Persönlicher Gutschein-Code</li>
+
+<li>✔ Per E-Mail oder Post erhältlich</li>
+
+<li>✔ Für alle Dienstleistungen einlösbar</li>
+
+<li>✔ 3 Jahre gültig</li>
+
+<li>✔ Sicher und individuell erstellt</li>
+
+</ul>
+
+</div>
+
+<input
+type="email"
+placeholder="E-Mail Adresse"
+id="email"
+>
+
+
+<input
+type="tel"
+placeholder="Telefonnummer"
+id="phone"
+>
+
+<h3>Versandart</h3>
+
+<select id="delivery">
+
+<option>Per E-Mail</option>
+
+<option>Per Post</option>
+
+</select>
+
+
+<button onclick="sendVoucher()">
+Jetzt Gutschein bestellen
+</button>
 
 <div class="footer">
 
@@ -130,9 +218,86 @@ width:220px;
 </a>
 
 </div>
+
 </div>
 
 </div>
+<div
+id="success"
+style="
+display:none;
+margin-top:20px;
+background:#e8fff0;
+padding:20px;
+border-radius:15px;
+"
+>
+
+<h2>✅ Anfrage erfolgreich gesendet</h2>
+
+<p>
+Vielen Dank.
+
+Make-up Artist by Asma
+meldet sich schnellstmöglich.
+</p>
+
+</div>
+<script>
+
+function generateCode(){
+
+return "ASMA-" +
+Math.floor(
+100000 + Math.random()*900000
+);
+
+}
+
+function sendVoucher(){
+
+let code = generateCode();
+
+let customer =
+document.getElementById("customerName").value;
+
+let receiver =
+document.getElementById("receiverName").value;
+
+let amount =
+document.getElementById("amount").value;
+
+let service =
+document.getElementById("service").value;
+
+let email =
+document.getElementById("email").value;
+
+if(customer == "" ||
+receiver == "" ||
+email == ""){
+
+alert("Bitte alle Felder ausfüllen");
+return;
+
+}
+
+document.getElementById(
+"success"
+).style.display="block";
+
+alert(
+
+"Neue Gutscheinanfrage\n\n" +
+
+"Gutscheincode:\n" +
+
+code
+
+);
+
+}
+</script>
 
 </body>
 </html>
