@@ -181,8 +181,9 @@ async function orderVoucher(){
 
     try{
 const success = await saveVoucher(data);
+const mail = await sendEmail(data);
 
-if(success){
+if(success && mail){
 
     alert(
 
@@ -310,6 +311,60 @@ async function saveVoucher(data){
     }
 
 }
+// =======================================
+// EmailJS
+// =======================================
+
+async function sendEmail(data){
+
+    try{
+
+        await emailjs.send(
+
+            "service_8g11l57",
+
+            "template_eqvapix",
+
+            {
+
+                code:data.code,
+
+                customer:data.customer,
+
+                receiver:data.receiver,
+
+                email:data.email,
+
+                phone:data.phone,
+
+                amount:data.amount,
+
+                service:data.service,
+
+                delivery:data.delivery
+
+            }
+
+        );
+
+        console.log("E-Mail erfolgreich gesendet");
+
+        return true;
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+        return false;
+
+    }
+
+}
+
+
+
 paypal.Buttons({
 
 createOrder:function(data,actions){
