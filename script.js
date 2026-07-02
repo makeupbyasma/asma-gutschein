@@ -186,6 +186,7 @@ const mail = await sendEmail(data);
 const customerMail = await sendCustomerEmail(data);
 
 if(success && mail && customerMail){
+await generateVoucherPDF(data);
     alert(
 
 `Vielen Dank!
@@ -404,6 +405,43 @@ async function sendCustomerEmail(data){
         return false;
 
     }
+
+}
+
+// =======================================
+// PDF Gutschein erstellen
+// =======================================
+
+async function generateVoucherPDF(data){
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF();
+
+    pdf.setFont("helvetica","bold");
+    pdf.setFontSize(22);
+
+    pdf.text("MAKE-UP ARTIST BY ASMA",105,25,{align:"center"});
+
+    pdf.setFontSize(18);
+    pdf.text("GESCHENKGUTSCHEIN",105,45,{align:"center"});
+
+    pdf.setFont("helvetica","normal");
+    pdf.setFontSize(14);
+
+    pdf.text("Empfänger:",20,70);
+    pdf.text(data.receiver,80,70);
+
+    pdf.text("Betrag:",20,85);
+    pdf.text(data.amount + " €",80,85);
+
+    pdf.text("Leistung:",20,100);
+    pdf.text(data.service,80,100);
+
+    pdf.text("Code:",20,115);
+    pdf.text(data.code,80,115);
+
+    pdf.save("Gutschein-" + data.code + ".pdf");
 
 }
 
