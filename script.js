@@ -183,8 +183,9 @@ async function orderVoucher(){
 const success = await saveVoucher(data);
 const mail = await sendEmail(data);
 
-if(success && mail){
+const customerMail = await sendCustomerEmail(data);
 
+if(success && mail && customerMail){
     alert(
 
 `Vielen Dank!
@@ -362,6 +363,50 @@ async function sendEmail(data){
     }
 
 }
+async function sendCustomerEmail(data){
+
+    try{
+
+        await emailjs.send(
+
+            "service_8g11l57",
+
+            "template_drxcxtk",
+
+            {
+
+                receiver:data.receiver,
+
+                email:data.email,
+
+                code:data.code,
+
+                amount:data.amount,
+
+                service:data.service,
+
+                delivery:data.delivery
+
+            }
+
+        );
+
+        console.log("Kunden-E-Mail gesendet");
+
+        return true;
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        return false;
+
+    }
+
+}
+
 
 
 
