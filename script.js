@@ -325,7 +325,7 @@ async function sendEmail(data){
 
             "service_8g11l57",
 
-            "template_eqvapix",
+            "template_drxcxtk",
 
             {
 
