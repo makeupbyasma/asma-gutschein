@@ -1,3 +1,5 @@
+import { createQRCode } from "./qr.js";
+
 // =======================================
 // PDF GUTSCHEIN
 // Make-up Artist by Asma
@@ -159,6 +161,27 @@ export async function createVoucherPDF(data) {
             align:"center"
         }
     );
+const qrImage = await createQRCode(data.code);
+
+pdf.addImage(
+    qrImage,
+    "PNG",
+    145,
+    205,
+    40,
+    40
+);
+
+pdf.setFontSize(10);
+
+pdf.text(
+    "QR-Code prüfen",
+    165,
+    250,
+    {
+        align:"center"
+    }
+);
 
     pdf.save(
 
