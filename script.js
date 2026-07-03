@@ -139,6 +139,8 @@ function validateForm(){
 
     return {
 
+
+
         code:voucherCode,
 
         customer:customer,
@@ -152,6 +154,9 @@ function validateForm(){
         amount:amount,
 
         service:service,
+
+message:
+document.getElementById("message").value,
 
         delivery:
         document.getElementById("delivery").value
@@ -181,6 +186,9 @@ async function orderVoucher(){
 
     try{
 const success = await saveVoucher(data);
+
+createVoucherPDF(data);
+
 const mail = await sendEmail(data);
 
 const customerMail = await sendCustomerEmail(data);
@@ -253,6 +261,10 @@ if(buyButton){
 import {
     db
 } from "./firebase.js";
+
+import {
+    createVoucherPDF
+} from "./pdf.js";
 
 import {
 
