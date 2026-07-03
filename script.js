@@ -169,56 +169,41 @@ document.getElementById("message").value,
 // ===============================
 
 async function orderVoucher(){
+
     const data = validateForm();
 
     if(!data){
-
         return;
-
     }
-
-    const button =
-    document.getElementById("buyButton");
-
-    button.disabled=true;
-
-    button.innerHTML="⏳ Bestellung wird verarbeitet...";
 
     try{
 
-    const success = await saveVoucher(data);
+        const success = await saveVoucher(data);
 
-    if(!success){
-        throw new Error("Speichern fehlgeschlagen");
+        if(!success){
+            throw new Error("Speichern fehlgeschlagen");
+        }
+
+        await createVoucherPDF(data);
+
+        await sendEmail(data);
+
+        await sendCustomerEmail(data);
+
+        alert("Vielen Dank! Zahlung erfolgreich.");
+
     }
 
-    await createVoucherPDF(data);
-
-    await sendEmail(data);
-
-    await sendCustomerEmail(data);
-
-    alert("Vielen Dank! Zahlung erfolgreich.");
-
-}
-catch(error){
-
-    console.error(error);
-
-    alert("Fehler.");
-
-}
     catch(error){
 
-        alert("Fehler beim Senden.");
+        console.error(error);
 
-        button.disabled=false;
-
-        button.innerHTML="Jetzt Gutschein kaufen";
+        alert("Fehler beim Speichern oder Senden.");
 
     }
 
 }
+
 // ===============================
 // Button verbinden
 // ===============================
