@@ -2,18 +2,21 @@ import { db } from "./firebase.js";
 
 import {
 collection,
-getDocs
+getDocs,
+doc,
+updateDoc
 } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
-
 const tbody = document.querySelector("tbody");
 
 async function loadVouchers(){
 
+    tbody.innerHTML = "";
+
     const snapshot = await getDocs(collection(db,"gutscheine"));
 
-    snapshot.forEach(doc=>{
+    snapshot.forEach((voucher)=>{
 
-        const data = doc.data();
+        const data = voucher.data();
 
         tbody.innerHTML += `
 
@@ -31,7 +34,7 @@ async function loadVouchers(){
 
 <td>
 
-<button>
+<button onclick="redeemVoucher('${voucher.id}')">
 
 Einlösen
 
@@ -46,5 +49,18 @@ Einlösen
     });
 
 }
-
 loadVouchers();
+window.redeemVoucher = async function(id){
+
+    await updateDoc(
+        doc(db,"gutscheine",id),
+        {
+            status:"Eingelöst"
+        }
+    );
+
+    alert("Gutschein wurde eingelöst.");
+
+    loadVouchers();
+
+}
