@@ -258,8 +258,15 @@ async function saveVoucher(data){
 
                 status:"Offen",
 
-                created:serverTimestamp()
+purchaseDate:new Date().toLocaleDateString("de-DE"),
 
+validUntil:new Date(
+    new Date().setFullYear(
+        new Date().getFullYear()+1
+    )
+).toLocaleDateString("de-DE"),
+
+created:serverTimestamp()
             }
 
         );
