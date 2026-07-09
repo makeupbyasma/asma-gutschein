@@ -2,22 +2,21 @@ export async function createQRCode(code){
 
     return new Promise((resolve)=>{
 
-        const div=document.createElement("div");
+        const temp = document.createElement("div");
 
-        new QRCode(div,{
-
+        new QRCode(temp,{
             text:
-            "https://lovelasting740-png.github.io/asma-gutschein/check.html?code="+code,
-
-            width:220,
-
-            height:220
-
+                window.location.origin +
+                window.location.pathname.replace("index.html","") +
+                "check.html?code=" +
+                code,
+            width:200,
+            height:200
         });
 
         setTimeout(()=>{
 
-            const img=div.querySelector("img");
+            const img = temp.querySelector("img");
 
             resolve(img.src);
 
