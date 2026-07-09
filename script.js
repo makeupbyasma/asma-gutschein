@@ -430,3 +430,31 @@ orderVoucher();
 }
 
 }).render("#paypal-button-container");
+
+window.testPDF = async function(){
+
+    const data = {
+
+        code: "ASMA-123456",
+
+        customer: "Max Mustermann",
+
+        receiver: "Sarah",
+
+        email: "test@test.de",
+
+        phone: "012345678",
+
+        amount: "100",
+
+        service: "Freie Wahl",
+
+        message: "Alles Liebe und viel Freude!",
+
+        delivery: "E-Mail"
+
+    };
+
+    await createVoucherPDF(data);
+
+}

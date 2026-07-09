@@ -21,6 +21,18 @@ logo.src = "images logo.jpeg";
 
     });
 
+const today = new Date();
+
+const purchaseDate =
+today.toLocaleDateString("de-DE");
+
+const validUntil =
+new Date(
+today.getFullYear()+1,
+today.getMonth(),
+today.getDate()
+).toLocaleDateString("de-DE");
+
     // Hintergrund
 
     pdf.setFillColor(255,248,251);
@@ -54,6 +66,22 @@ pdf.addImage(
 
 );
 
+const logo = new Image();
+
+logo.src = "logo.png";
+
+await new Promise(resolve=>{
+    logo.onload = resolve;
+});
+
+pdf.addImage(
+    logo,
+    "PNG",
+    20,
+    18,
+    30,
+    30
+);
     // Titel
 
     pdf.setTextColor(214,133,168);
@@ -131,6 +159,33 @@ pdf.text(data.validUntil,75,138);
     pdf.text(data.amount+" €",115,150);
 
     // Leistung
+pdf.setFont("helvetica","normal");
+
+pdf.setFontSize(14);
+
+pdf.text(
+    "Ausgestellt:",
+    25,
+    155
+);
+
+pdf.text(
+    purchaseDate,
+    75,
+    155
+);
+
+pdf.text(
+    "Gültig bis:",
+    25,
+    167
+);
+
+pdf.text(
+    validUntil,
+    75,
+    167
+);
 
     pdf.setFont("helvetica","normal");
 
@@ -182,37 +237,39 @@ pdf.text(data.validUntil,75,138);
 
     // Footer
 
-pdf.setFontSize(10);
+pdf.setFontSize(11);
 
-pdf.setTextColor(90,90,90);
+pdf.setTextColor(90);
 
 pdf.text(
 "Make-up Artist by Asma",
 105,
-270,
-{
-align:"center"
-}
+258,
+{align:"center"}
 );
 
 pdf.text(
-"E-Mail: ahidar.asma@gmx.de",
+"Dieser Gutschein besitzt einen Wert von "
++ data.amount +
+" € und kann für alle angebotenen Leistungen eingelöst werden.",
 105,
-276,
-{
-align:"center"
-}
+266,
+{align:"center"}
+);
+
+pdf.text(
+"Kontakt: ahidar.asma@gmx.de",
+105,
+274,
+{align:"center"}
 );
 
 pdf.text(
 "Instagram: @makeupartistbyasma",
 105,
-282,
-{
-align:"center"
-}
+281,
+{align:"center"}
 );
-
     pdf.setFont("helvetica","normal");
 
     pdf.setFontSize(11);
@@ -285,3 +342,13 @@ maxWidth:110
     );
 
 }
+pdf.setFontSize(10);
+
+pdf.text(
+"QR-Code zur Gutscheinprüfung",
+165,
+252,
+{
+align:"center"
+}
+);
