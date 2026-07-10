@@ -431,6 +431,8 @@ orderVoucher();
 
 }).render("#paypal-button-container");
 
+console.log("SCRIPT GELADEN");
+
 window.testPDF = async function(){
 
     const data = {
