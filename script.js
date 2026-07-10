@@ -431,11 +431,9 @@ orderVoucher();
 
 }).render("#paypal-button-container");
 
-console.log("SCRIPT GELADEN");
+window.testPDF = async function () {
 
-window.testPDF = async function(){
-
-    const data = {
+    await createVoucherPDF({
 
         code: "ASMA-123456",
 
@@ -451,12 +449,16 @@ window.testPDF = async function(){
 
         service: "Freie Wahl",
 
-        message: "Alles Liebe und viel Freude!",
+        message: "Alles Gute!",
 
-        delivery: "E-Mail"
+        delivery: "E-Mail",
 
-    };
+        purchaseDate: "10.07.2026",
 
-    await createVoucherPDF(data);
+        validUntil: "10.07.2027"
 
-}
+    });
+
+};
+
+console.log("testPDF registriert");
