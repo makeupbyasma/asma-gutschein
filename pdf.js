@@ -51,201 +51,161 @@ export async function createVoucherPDF(data){
 
         ).toLocaleDateString("de-DE");
 
-    // ----------------------------
-    // Hintergrund
-    // ----------------------------
-
-    pdf.setFillColor(255,248,251);
-
-    pdf.rect(
-
-        0,
-        0,
-        210,
-        297,
-        "F"
-
-    );
-
-    // ----------------------------
-    // Rahmen
-    // ----------------------------
-
-    pdf.setDrawColor(
-
-        214,
-        133,
-        168
-
-    );
-
-    pdf.setLineWidth(1.5);
-
-    pdf.roundedRect(
-
-        8,
-        8,
-        194,
-        281,
-        5,
-        5
-
-    );
-
-    // ----------------------------
-    // Logo
-    // ----------------------------
-
-    pdf.addImage(
-
-        logo,
-
-        "JPEG",
-
-        62,
-
-        12,
-
-        85,
-
-        42
-
-    );
-
-    // ----------------------------
-    // Titel
-    // ----------------------------
-
-    pdf.setFont(
-
-        "helvetica",
-
-        "bold"
-
-    );
-
-    pdf.setFontSize(28);
-
-    pdf.setTextColor(
-
-        214,
-        133,
-        168
-
-    );
-
-    pdf.text(
-
-        "GESCHENKGUTSCHEIN",
-
-        105,
-
-        68,
-
-        {
-
-            align:"center"
-
-        }
-
-    );
-
-    pdf.setDrawColor(
-
-        214,
-        133,
-        168
-
-    );
-
-    pdf.line(
-
-        45,
-
-        75,
-
-        165,
-
-        75
-
-    );
-
-    // ----------------------------
-    // Empfänger
-    // ----------------------------
-
-    pdf.setFont(
-
-        "helvetica",
-
-        "normal"
-
-    );
-
-    pdf.setFontSize(15);
-
-    pdf.setTextColor(
-
-        70,
-
-        70,
-
-        70
-
-    );
-
-    pdf.text(
-
-        "Dieser Gutschein ist ausgestellt für",
-
-        105,
-
-        90,
-
-        {
-
-            align:"center"
-
-        }
-
-    );
-
-    pdf.setFont(
-
-        "helvetica",
-
-        "bold"
-
-    );
-
-    pdf.setFontSize(27);
-
-    pdf.setTextColor(
-
-        214,
-
-        133,
-
-        168
-
-    );
-
-    pdf.text(
-
-        data.receiver,
-
-        105,
-
-        104,
-
-        {
-
-            align:"center"
-
-        }
-
-    );
-
+    // Eleganter Creme Hintergrund
+
+pdf.setFillColor(252,248,243);
+pdf.rect(
+    0,
+    0,
+    210,
+    297,
+    "F"
+);
+
+// Dünner eleganter Rahmen
+
+pdf.setDrawColor(220,195,170);
+pdf.setLineWidth(0.7);
+
+//pdf.roundedRect(
+   // 12,
+   // 12,
+   // 186,
+    //260,
+    //3,
+   // 3
+//);
+    // Logo oben mittig
+
+pdf.addImage(
+    logo,
+    "JPEG",
+    58,
+    18,
+    95,
+    42
+);
+
+// Elegante Überschrift
+
+pdf.setFont(
+    "times",
+    "bold"
+);
+
+pdf.setFontSize(30);
+
+pdf.setTextColor(
+    155,
+    120,
+    95
+);
+
+pdf.text(
+    "GESCHENKGUTSCHEIN",
+    105,
+    80,
+    {
+        align:"center"
+    }
+);
+
+pdf.setFont(
+    "times",
+    "italic"
+);
+
+pdf.setFontSize(15);
+
+pdf.setTextColor(
+    140,
+    140,
+    140
+);
+
+pdf.text(
+    "Make-up Artist by Asma",
+    105,
+    89,
+    {
+        align:"center"
+    }
+);
+
+pdf.setDrawColor(
+    220,
+    195,
+    170
+);
+
+pdf.line(
+    55,
+    95,
+    155,
+    95
+);
+    // ======================================
+// Empfänger
+// ======================================
+
+pdf.setFont(
+    "times",
+    "italic"
+);
+
+pdf.setFontSize(16);
+
+pdf.setTextColor(
+    120,
+    120,
+    120
+);
+
+pdf.text(
+    "Dieser Gutschein ist ausgestellt für",
+    105,
+    112,
+    {
+        align:"center"
+    }
+);
+
+pdf.setFont(
+    "times",
+    "bold"
+);
+
+pdf.setFontSize(32);
+
+pdf.setTextColor(
+    170,
+    135,
+    110
+);
+
+pdf.text(
+    data.receiver,
+    105,
+    126,
+    {
+        align:"center"
+    }
+);
+
+// feine Linie
+
+pdf.setDrawColor(
+    225,
+    205,
+    185
+);
+
+pdf.line(
+    65,
+    132,
+    145,
+    132
+);
     // ----------------------------
     // Ausstellungsdatum
     // ----------------------------
@@ -356,102 +316,75 @@ export async function createVoucherPDF(data){
 
     );
 
-    // ----------------------------
-    // Gutscheinwert
-    // ----------------------------
+// ======================================
+// Gutscheinwert
+// ======================================
 
-    pdf.setFillColor(
+pdf.setDrawColor(
+    215,
+    195,
+    170
+);
 
-        250,
+pdf.setFillColor(
+    255,
+    255,
+    255
+);
 
-        235,
+pdf.roundedRect(
+    28,
+    150,
+    154,
+    48,
+    3,
+    3,
+    "FD"
+);
 
-        242
+pdf.setFont(
+    "times",
+    "italic"
+);
 
-    );
+pdf.setFontSize(15);
 
-    pdf.roundedRect(
+pdf.setTextColor(
+    150,
+    150,
+    150
+);
 
-        25,
+pdf.text(
+    "Gutscheinwert",
+    105,
+    165,
+    {
+        align:"center"
+    }
+);
 
-        145,
+pdf.setFont(
+    "times",
+    "bold"
+);
 
-        160,
+pdf.setFontSize(38);
 
-        36,
+pdf.setTextColor(
+    180,
+    140,
+    105
+);
 
-        4,
-
-        4,
-
-        "F"
-
-    );
-
-    pdf.setFont(
-
-        "helvetica",
-
-        "bold"
-
-    );
-
-    pdf.setFontSize(15);
-
-    pdf.setTextColor(
-
-        90,
-
-        90,
-
-        90
-
-    );
-
-    pdf.text(
-
-        "GUTSCHEINWERT",
-
-        105,
-
-        157,
-
-        {
-
-            align:"center"
-
-        }
-
-    );
-
-    pdf.setFontSize(30);
-
-    pdf.setTextColor(
-
-        214,
-
-        133,
-
-        168
-
-    );
-
-    pdf.text(
-
-        data.amount + " €",
-
-        105,
-
-        172,
-
-        {
-
-            align:"center"
-
-        }
-
-    );
-
+pdf.text(
+    data.amount + " €",
+    105,
+    183,
+    {
+        align:"center"
+    }
+);
     // >>> TEIL 1 ENDE <<<
     // ----------------------------
     // Leistung
@@ -552,249 +485,86 @@ export async function createVoucherPDF(data){
             align:"center"
         }
     );
+// >>> TEIL 2 ENDE <<<
+ // ----------------------------
+// Nachricht
+// ----------------------------
 
-    // ----------------------------
-    // Persönliche Nachricht
-    // ----------------------------
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(13);
+pdf.setTextColor(70,70,70);
 
-    if(
-        data.message &&
-        data.message.trim() !== ""
-    ){
+pdf.text(
+    "Persönliche Nachricht",
+    25,
+    244
+);
 
-        pdf.setFont(
-            "helvetica",
-            "bold"
-        );
+pdf.setFont("helvetica","italic");
+pdf.setFontSize(11);
 
-        pdf.setFontSize(14);
-
-        pdf.setTextColor(
-            60,
-            60,
-            60
-        );
-
-        pdf.text(
-            "Persönliche Nachricht",
-            25,
-            248
-        );
-
-        pdf.setFont(
-            "helvetica",
-            "italic"
-        );
-
-        pdf.setFontSize(12);
-
-        pdf.text(
-            data.message,
-            25,
-            257,
-            {
-                maxWidth:95
-            }
-        );
-
+pdf.text(
+    data.message || "Alles Gute!",
+    25,
+    251,
+    {
+        maxWidth:90
     }
+);
 
-    // ----------------------------
-    // QR-Code
-    // ----------------------------
+// ----------------------------
+// QR-Code
+// ----------------------------
 
-    const qrImage =
-        await createQRCode(data.code);
+const qrImage = await createQRCode(data.code);
 
-    pdf.setDrawColor(
-        214,
-        133,
-        168
-    );
+pdf.setDrawColor(214,133,168);
+pdf.setFillColor(255,255,255);
 
-    pdf.roundedRect(
-        138,
-        240,
-        48,
-        48,
-        4,
-        4
-    );
+pdf.roundedRect(
+    140,
+    225,
+    45,
+    45,
+    3,
+    3,
+    "FD"
+);
 
-    pdf.addImage(
-        qrImage,
-        "PNG",
-        144,
-        246,
-        36,
-        36
-    );
+pdf.addImage(
+    qrImage,
+    "PNG",
+    145,
+    230,
+    35,
+    35
+);
+// ----------------------------
+// Hinweis
+// ----------------------------
 
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
+pdf.setFont("helvetica","normal");
 
-    pdf.setFontSize(9);
+pdf.setFontSize(9);
 
-    pdf.setTextColor(
-        120,
-        120,
-        120
-    );
+pdf.setTextColor(90,90,90);
 
-    pdf.text(
-        "QR-Code zur",
-        162,
-        284,
-        {
-            align:"center"
-        }
-    );
+pdf.text(
+    "Dieser Gutschein besitzt einen Wert von " +
+    data.amount +
+    " € und kann für alle angebotenen Leistungen eingelöst werden.",
+    25,
+    262,
+    {
+        maxWidth:105
+    }
+);
 
-    pdf.text(
-        "Prüfung",
-        162,
-        288,
-        {
-            align:"center"
-        }
-    );
-
-    // >>> TEIL 2 ENDE <<<
-    // ----------------------------
-    // Rechtlicher Hinweis
-    // ----------------------------
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(10);
-
-    pdf.setTextColor(
-        70,
-        70,
-        70
-    );
-
-    pdf.text(
-
-        "Dieser Gutschein besitzt einen Wert von " +
-        data.amount +
-        " € und kann für alle angebotenen Leistungen eingelöst werden.",
-
-        25,
-
-        275,
-
-        {
-            maxWidth:100
-        }
-
-    );
-
-    pdf.text(
-
-        "Der Gutschein ist ab Ausstellungsdatum 12 Monate gültig.",
-
-        25,
-
-        282
-
-    );
-
-    // ----------------------------
-    // Trennlinie
-    // ----------------------------
-
-    pdf.setDrawColor(
-        214,
-        133,
-        168
-    );
-
-    pdf.line(
-        20,
-        286,
-        190,
-        286
-    );
-
-    // ----------------------------
-    // Footer
-    // ----------------------------
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(11);
-
-    pdf.setTextColor(
-        214,
-        133,
-        168
-    );
-
-    pdf.text(
-
-        "Make-up Artist by Asma",
-
-        105,
-
-        291,
-
-        {
-            align:"center"
-        }
-
-    );
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(9);
-
-    pdf.setTextColor(
-        90,
-        90,
-        90
-    );
-
-    pdf.text(
-
-        "E-Mail: ahidar.asma@gmx.de",
-
-        105,
-
-        295,
-
-        {
-            align:"center"
-        }
-
-    );
-
-    // >>> TEIL 3 ENDE <<<
-    pdf.text(
-
-        "Instagram: @makeupartistbyasma",
-
-        105,
-
-        299,
-
-        {
-            align:"center"
-        }
-
-    );
-
+pdf.text(
+    "Der Gutschein ist ab Ausstellungsdatum 12 Monate gültig.",
+    25,
+    267
+);
     // ----------------------------
     // PDF speichern
     // ----------------------------
