@@ -554,7 +554,7 @@ pdf.text(
     data.amount +
     " € und kann für alle angebotenen Leistungen eingelöst werden.",
     25,
-    262,
+    268,
     {
         maxWidth:105
     }
@@ -563,7 +563,7 @@ pdf.text(
 pdf.text(
     "Der Gutschein ist ab Ausstellungsdatum 12 Monate gültig.",
     25,
-    267
+    273
 );
     // ----------------------------
     // PDF speichern
