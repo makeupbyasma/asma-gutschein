@@ -234,9 +234,9 @@ pdf.line(
 
         "Ausstellungsdatum:",
 
-        28,
+        35,
 
-        120
+        142
 
     );
 
@@ -244,9 +244,9 @@ pdf.line(
 
         purchaseDate,
 
-        75,
+        83,
 
-        120
+        142
 
     );
 
@@ -254,9 +254,9 @@ pdf.line(
 
         "Gültig bis:",
 
-        28,
+        35,
 
-        130
+        150
 
     );
 
@@ -282,9 +282,9 @@ pdf.line(
 
         validUntil,
 
-        75,
+        83,
 
-        130
+        150
 
     );
 
@@ -310,9 +310,9 @@ pdf.line(
 
         "(12 Monate gültig)",
 
-        118,
+        122,
 
-        130
+        150
 
     );
 
@@ -334,7 +334,7 @@ pdf.setFillColor(
 
 pdf.roundedRect(
     28,
-    150,
+    160,
     154,
     48,
     3,
@@ -358,7 +358,7 @@ pdf.setTextColor(
 pdf.text(
     "Gutscheinwert",
     105,
-    165,
+    175,
     {
         align:"center"
     }
@@ -380,7 +380,7 @@ pdf.setTextColor(
 pdf.text(
     data.amount + " €",
     105,
-    183,
+    193,
     {
         align:"center"
     }
@@ -405,8 +405,8 @@ pdf.text(
 
     pdf.text(
         "Leistung",
-        25,
-        196
+        45,
+        204
     );
 
     pdf.setFont(
@@ -418,8 +418,8 @@ pdf.text(
 
     pdf.text(
         data.service,
-        70,
-        196
+        88,
+        204
     );
 
     // ----------------------------
@@ -545,26 +545,26 @@ pdf.addImage(
 
 pdf.setFont("helvetica","normal");
 
-pdf.setFontSize(9);
-
-pdf.setTextColor(90,90,90);
+pdf.setFontSize(10);
 
 pdf.text(
-    "Dieser Gutschein besitzt einen Wert von " +
-    data.amount +
-    " € und kann für alle angebotenen Leistungen eingelöst werden.",
+    "• Gutscheinwert: " + data.amount + " €",
     25,
-    268,
-    {
-        maxWidth:105
-    }
+    260
 );
 
 pdf.text(
-    "Der Gutschein ist ab Ausstellungsdatum 12 Monate gültig.",
+    "• Einlösbar für alle angebotenen Leistungen",
     25,
-    273
+    266
 );
+
+pdf.text(
+    "• Gültigkeit: 12 Monate ab Kaufdatum",
+    25,
+    272
+);
+
     // ----------------------------
     // PDF speichern
     // ----------------------------
