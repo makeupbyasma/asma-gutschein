@@ -431,34 +431,3 @@ orderVoucher();
 
 }).render("#paypal-button-container");
 
-window.testPDF = async function () {
-
-    await createVoucherPDF({
-
-        code: "ASMA-123456",
-
-        customer: "Max Mustermann",
-
-        receiver: "Sarah",
-
-        email: "test@test.de",
-
-        phone: "012345678",
-
-        amount: "100",
-
-        service: "Freie Wahl",
-
-        message: "Alles Gute!",
-
-        delivery: "E-Mail",
-
-        purchaseDate: "10.07.2026",
-
-        validUntil: "10.07.2027"
-
-    });
-
-};
-
-console.log("testPDF registriert");

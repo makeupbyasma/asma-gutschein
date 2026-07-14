@@ -37,6 +37,9 @@ export async function createVoucherPDF(data){
 
     const today = new Date();
 
+console.log(today);
+console.log(data.purchaseDate);
+
     const purchaseDate =
         data.purchaseDate ||
         today.toLocaleDateString("de-DE");
@@ -539,32 +542,6 @@ pdf.addImage(
     35,
     35
 );
-// ----------------------------
-// Hinweis
-// ----------------------------
-
-pdf.setFont("helvetica","normal");
-
-pdf.setFontSize(10);
-
-pdf.text(
-    "• Gutscheinwert: " + data.amount + " €",
-    25,
-    260
-);
-
-pdf.text(
-    "• Einlösbar für alle angebotenen Leistungen",
-    25,
-    266
-);
-
-pdf.text(
-    "• Gültigkeit: 12 Monate ab Kaufdatum",
-    25,
-    272
-);
-
     // ----------------------------
     // PDF speichern
     // ----------------------------
