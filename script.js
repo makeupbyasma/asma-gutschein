@@ -296,9 +296,9 @@ async function sendEmail(data){
 
         await emailjs.send(
 
-            "service_8g11l57",
+            "service_db42g0a",
 
-            "template_drxcxtk",
+            "template_prkyr49",
 
             {
 
@@ -343,9 +343,9 @@ async function sendCustomerEmail(data){
 
         await emailjs.send(
 
-            "service_8g11l57",
+            "service_db42g0a",
 
-            "template_eqvapix",
+            "template_hvblx9o",
 
             {
 

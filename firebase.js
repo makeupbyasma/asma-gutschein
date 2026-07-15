@@ -8,18 +8,20 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/12.5.0/firebase
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyB6mwaWilCSTxT22phpLF0F6hZrJHOnnsE",
-    authDomain: "asma-gutschein.firebaseapp.com",
-    projectId: "asma-gutschein",
-    storageBucket: "asma-gutschein.firebasestorage.app",
-    messagingSenderId: "104110369931",
-    appId: "1:104110369931:web:d279417ad41a73301cb88e"
+    apiKey: "AIzaSyBINo-Nc19JLfK1k08vng6H-iuQGesxbXY",
 
+    authDomain: "asma-gutschein-1c508.firebaseapp.com",
+
+    projectId: "asma-gutschein-1c508",
+
+    storageBucket: "asma-gutschein-1c508.firebasestorage.app",
+
+    messagingSenderId: "185842816017",
+
+    appId: "1:185842816017:web:1f4b99b079d067ba274db0"
 
 };
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-
-export { db };
+export const db = getFirestore(app);
